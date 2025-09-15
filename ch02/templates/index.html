@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>클릭 시 숫자 증가</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin-top: 100px;
+    }
+    h1 {
+      font-size: 32px;
+    }
+    #count {
+      font-size: 80px;
+      margin: 20px 0;
+    }
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .increase {
+      background-color: #1E90FF;
+      color: white;
+    }
+    .send {
+      background-color: #28a745;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>클릭 시 숫자 증가</h1>
+  <div id="count">0</div>
+  <button class="increase" onclick="increase()">수 증가</button>
+  <button class="send" onclick="send()">전송</button>
+
+  <script>
+      const state = {
+        count: 0
+      };
+
+      const countEl = document.getElementById("count");
+
+      const increase = () => {
+          state.count++;
+          countEl.innerHTML = state.count;
+      };
+      const send = async () => {
+      const response = await fetch("/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ count: state.count })
+      });
+      const result = await response.json();
+      console.log(result);
+    };
+
+      submit.addEventListener("click", async () => {
+        let res = await fetch("click", {
+        method: "Post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ value: n })
+        });
+    });
+
+  </script>
+</body>
+</html>
